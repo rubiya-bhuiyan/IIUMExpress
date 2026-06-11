@@ -34,6 +34,14 @@
     </div>
 </section>
 
+@if(session('success'))
+    <div class="container mt-4">
+        <div class="alert alert-success rounded-4">
+            {{ session('success') }}
+        </div>
+    </div>
+@endif
+
 <section class="py-4 bg-white border-bottom">
     <div class="container">
         <div class="d-flex flex-wrap gap-2">
@@ -79,9 +87,14 @@
 
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="text-success mb-0">RM 8.50</h5>
-                            <button class="btn btn-main btn-sm">
-                                Add
-                            </button>
+
+                            <form action="{{ route('cart.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="food_item_id" value="1">
+                                <button type="submit" class="btn btn-main btn-sm">
+                                    Add
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -103,9 +116,14 @@
 
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="text-success mb-0">RM 9.00</h5>
-                            <button class="btn btn-main btn-sm">
-                                Add
-                            </button>
+
+                            <form action="{{ route('cart.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="food_item_id" value="2">
+                                <button type="submit" class="btn btn-main btn-sm">
+                                    Add
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -127,9 +145,14 @@
 
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="text-success mb-0">RM 7.50</h5>
-                            <button class="btn btn-main btn-sm">
-                                Add
-                            </button>
+
+                            <form action="{{ route('cart.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="food_item_id" value="3">
+                                <button type="submit" class="btn btn-main btn-sm">
+                                    Add
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -151,9 +174,14 @@
 
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="text-success mb-0">RM 3.50</h5>
-                            <button class="btn btn-main btn-sm">
-                                Add
-                            </button>
+
+                            <form action="{{ route('cart.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="food_item_id" value="4">
+                                <button type="submit" class="btn btn-main btn-sm">
+                                    Add
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

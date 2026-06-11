@@ -20,76 +20,71 @@
 
 <section class="py-5 bg-light">
     <div class="container">
+
+        @if(session('success'))
+            <div class="alert alert-success rounded-4">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if($cartItems->isEmpty())
+            <div class="bg-white rounded-4 shadow-sm p-5 text-center">
+                <h4 class="fw-bold">Your cart is empty</h4>
+                <p class="text-muted">Browse the menu and add your favourite meals.</p>
+                <a href="/menu" class="btn btn-main">
+                    Browse Menu
+                </a>
+            </div>
+        @else
+
         <div class="row g-4">
-
             <div class="col-lg-8">
-                <div class="bg-white rounded-4 shadow-sm p-4 mb-3">
-                    <div class="row align-items-center">
-                        <div class="col-md-2">
-                            <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b"
-                                 class="img-fluid rounded-4"
-                                 style="height:90px; object-fit:cover;"
-                                 alt="Chicken Rice">
-                        </div>
 
-                        <div class="col-md-5 mt-3 mt-md-0">
-                            <h5 class="fw-bold mb-1">Chicken Rice</h5>
-                            <p class="text-muted small mb-0">Rice served with juicy chicken and sauce.</p>
-                        </div>
+                @foreach($cartItems as $item)
+                    <div class="bg-white rounded-4 shadow-sm p-4 mb-3">
+                        <div class="row align-items-center">
 
-                        <div class="col-md-2 mt-3 mt-md-0">
-                            <span class="fw-bold">RM 8.50</span>
-                        </div>
-
-                        <div class="col-md-2 mt-3 mt-md-0">
-                            <div class="input-group input-group-sm">
-                                <button class="btn btn-outline-secondary">-</button>
-                                <input type="text" class="form-control text-center" value="1">
-                                <button class="btn btn-outline-secondary">+</button>
+                            <div class="col-md-2">
+                                <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b"
+                                     class="img-fluid rounded-4"
+                                     style="height:90px; object-fit:cover;"
+                                     alt="Food">
                             </div>
-                        </div>
 
-                        <div class="col-md-1 mt-3 mt-md-0 text-end">
-                            <button class="btn btn-sm btn-outline-danger">
-                                <i class="bi bi-trash"></i>
-                            </button>
+                            <div class="col-md-5 mt-3 mt-md-0">
+                                <h5 class="fw-bold mb-1">
+                                    {{ $item->foodItem->name }}
+                                </h5>
+                                <p class="text-muted small mb-0">
+                                    {{ $item->foodItem->description }}
+                                </p>
+                            </div>
+
+                            <div class="col-md-2 mt-3 mt-md-0">
+                                <span class="fw-bold">
+                                    RM {{ number_format($item->foodItem->price, 2) }}
+                                </span>
+                            </div>
+
+                            <div class="col-md-2 mt-3 mt-md-0">
+                                <span class="badge bg-success-subtle text-success px-3 py-2">
+                                    Qty: {{ $item->quantity }}
+                                </span>
+                            </div>
+
+                            <div class="col-md-1 mt-3 mt-md-0 text-end">
+                                <form action="{{ route('cart.destroy', $item->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+
                         </div>
                     </div>
-                </div>
-
-                <div class="bg-white rounded-4 shadow-sm p-4">
-                    <div class="row align-items-center">
-                        <div class="col-md-2">
-                            <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97"
-                                 class="img-fluid rounded-4"
-                                 style="height:90px; object-fit:cover;"
-                                 alt="Iced Milo">
-                        </div>
-
-                        <div class="col-md-5 mt-3 mt-md-0">
-                            <h5 class="fw-bold mb-1">Iced Milo</h5>
-                            <p class="text-muted small mb-0">Cold chocolate malt drink.</p>
-                        </div>
-
-                        <div class="col-md-2 mt-3 mt-md-0">
-                            <span class="fw-bold">RM 3.50</span>
-                        </div>
-
-                        <div class="col-md-2 mt-3 mt-md-0">
-                            <div class="input-group input-group-sm">
-                                <button class="btn btn-outline-secondary">-</button>
-                                <input type="text" class="form-control text-center" value="1">
-                                <button class="btn btn-outline-secondary">+</button>
-                            </div>
-                        </div>
-
-                        <div class="col-md-1 mt-3 mt-md-0 text-end">
-                            <button class="btn btn-sm btn-outline-danger">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
                 <a href="/menu" class="btn btn-outline-main mt-4">
                     <i class="bi bi-arrow-left"></i> Continue Shopping
@@ -100,34 +95,50 @@
                 <div class="bg-white rounded-4 shadow-sm p-4 sticky-top" style="top:100px;">
                     <h4 class="fw-bold mb-4">Order Summary</h4>
 
+                    @php
+                        $subtotal = $cartItems->sum(function($item) {
+                            return $item->foodItem->price * $item->quantity;
+                        });
+
+                        $deliveryFee = 2.00;
+                        $total = $subtotal + $deliveryFee;
+                    @endphp
+
                     <div class="d-flex justify-content-between mb-2">
                         <span class="text-muted">Subtotal</span>
-                        <span>RM 12.00</span>
+                        <span>RM {{ number_format($subtotal, 2) }}</span>
                     </div>
 
                     <div class="d-flex justify-content-between mb-2">
                         <span class="text-muted">Delivery Fee</span>
-                        <span>RM 2.00</span>
+                        <span>RM {{ number_format($deliveryFee, 2) }}</span>
                     </div>
 
                     <hr>
 
                     <div class="d-flex justify-content-between mb-4">
                         <h5 class="fw-bold">Total</h5>
-                        <h5 class="fw-bold text-success">RM 14.00</h5>
+                        <h5 class="fw-bold text-success">
+                            RM {{ number_format($total, 2) }}
+                        </h5>
                     </div>
 
-                    <button class="btn btn-main w-100 mb-3">
-                        Proceed to Checkout
-                    </button>
+                    <form action="{{ route('checkout.store') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-main w-100 mb-3">
+                            Proceed to Checkout
+                        </button>
+                    </form>
 
                     <p class="text-muted small text-center mb-0">
                         Secure payment and fast campus delivery.
                     </p>
                 </div>
             </div>
-
         </div>
+
+        @endif
+
     </div>
 </section>
 
