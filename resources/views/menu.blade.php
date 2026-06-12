@@ -21,14 +21,23 @@
             </div>
 
             <div class="col-lg-5 mt-4 mt-lg-0">
-                <div class="bg-white rounded-4 shadow-sm p-3">
+                <form action="{{ route('menu.index') }}" method="GET" class="bg-white rounded-4 shadow-sm p-3">
                     <div class="input-group">
                         <span class="input-group-text bg-white border-0">
                             <i class="bi bi-search"></i>
                         </span>
-                        <input type="text" class="form-control border-0" placeholder="Search food, drinks, snacks...">
+
+                        <input type="text"
+                               name="search"
+                               value="{{ request('search') }}"
+                               class="form-control border-0"
+                               placeholder="Search food, drinks, snacks...">
+
+                        <button class="btn btn-main" type="submit">
+                            Search
+                        </button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -45,12 +54,15 @@
 <section class="py-4 bg-white border-bottom">
     <div class="container">
         <div class="d-flex flex-wrap gap-2">
-            <button class="btn btn-main">All</button>
-            <button class="btn btn-outline-main">🍚 Rice</button>
-            <button class="btn btn-outline-main">🍔 Burgers</button>
-            <button class="btn btn-outline-main">🥤 Drinks</button>
-            <button class="btn btn-outline-main">🍟 Snacks</button>
-            <button class="btn btn-outline-main">🍰 Desserts</button>
+            <a href="{{ route('menu.index') }}" class="btn btn-main">
+                All
+            </a>
+
+            @foreach($categories as $category)
+                <a href="{{ route('menu.index', ['category' => $category->id]) }}" class="btn btn-outline-main">
+                    {{ $category->name }}
+                </a>
+            @endforeach
         </div>
     </div>
 </section>
@@ -71,121 +83,68 @@
 
         <div class="row g-4">
 
-            <div class="col-lg-3 col-md-6">
-                <div class="card food-card h-100">
-                    <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b"
-                         class="card-img-top" style="height:200px; object-fit:cover;" alt="Chicken Rice">
+            @forelse($foods as $food)
+                @php
+                    $averageRating = $food->ratings->avg('rating');
+                    $reviewCount = $food->ratings->count();
+                @endphp
 
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="badge bg-success-subtle text-success">Rice</span>
-                            <small class="text-warning">★★★★★</small>
-                        </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card food-card h-100">
+                        <img src="{{ $food->image ?: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b' }}"
+                             class="card-img-top"
+                             style="height:200px; object-fit:cover;"
+                             alt="{{ $food->name }}">
 
-                        <h5 class="fw-bold">Chicken Rice</h5>
-                        <p class="text-muted small">Rice served with juicy chicken and special sauce.</p>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-success-subtle text-success">
+                                    {{ $food->category->name ?? 'Food' }}
+                                </span>
 
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="text-success mb-0">RM 8.50</h5>
+                                <small class="text-warning">
+                                    @if($averageRating)
+                                        ⭐ {{ number_format($averageRating, 1) }}
+                                    @else
+                                        No rating
+                                    @endif
+                                </small>
+                            </div>
 
-                            <form action="{{ route('cart.store') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="food_item_id" value="1">
-                                <button type="submit" class="btn btn-main btn-sm">
-                                    Add
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            <h5 class="fw-bold">{{ $food->name }}</h5>
 
-            <div class="col-lg-3 col-md-6">
-                <div class="card food-card h-100">
-                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
-                         class="card-img-top" style="height:200px; object-fit:cover;" alt="Burger">
+                            <p class="text-muted small">
+                                {{ $food->description }}
+                            </p>
 
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="badge bg-warning-subtle text-warning">Burger</span>
-                            <small class="text-warning">★★★★☆</small>
-                        </div>
+                            <p class="small text-muted mb-2">
+                                {{ $reviewCount }} review{{ $reviewCount == 1 ? '' : 's' }}
+                            </p>
 
-                        <h5 class="fw-bold">Crispy Chicken Burger</h5>
-                        <p class="text-muted small">Crispy chicken patty with lettuce and creamy sauce.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="text-success mb-0">
+                                    RM {{ number_format($food->price, 2) }}
+                                </h5>
 
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="text-success mb-0">RM 9.00</h5>
-
-                            <form action="{{ route('cart.store') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="food_item_id" value="2">
-                                <button type="submit" class="btn btn-main btn-sm">
-                                    Add
-                                </button>
-                            </form>
+                                <form action="{{ route('cart.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="food_item_id" value="{{ $food->id }}">
+                                    <button type="submit" class="btn btn-main btn-sm">
+                                        Add
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card food-card h-100">
-                    <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19"
-                         class="card-img-top" style="height:200px; object-fit:cover;" alt="Fried Rice">
-
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="badge bg-success-subtle text-success">Rice</span>
-                            <small class="text-warning">★★★★☆</small>
-                        </div>
-
-                        <h5 class="fw-bold">Nasi Goreng Kampung</h5>
-                        <p class="text-muted small">Traditional fried rice with spicy kampung flavour.</p>
-
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="text-success mb-0">RM 7.50</h5>
-
-                            <form action="{{ route('cart.store') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="food_item_id" value="3">
-                                <button type="submit" class="btn btn-main btn-sm">
-                                    Add
-                                </button>
-                            </form>
-                        </div>
+            @empty
+                <div class="col-12">
+                    <div class="bg-white rounded-4 shadow-sm p-5 text-center">
+                        <h4 class="fw-bold">No food items found</h4>
+                        <p class="text-muted">Try another search keyword or category.</p>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card food-card h-100">
-                    <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97"
-                         class="card-img-top" style="height:200px; object-fit:cover;" alt="Iced Milo">
-
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="badge bg-info-subtle text-info">Drinks</span>
-                            <small class="text-warning">★★★★★</small>
-                        </div>
-
-                        <h5 class="fw-bold">Iced Milo</h5>
-                        <p class="text-muted small">Cold chocolate malt drink, perfect for hot weather.</p>
-
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="text-success mb-0">RM 3.50</h5>
-
-                            <form action="{{ route('cart.store') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="food_item_id" value="4">
-                                <button type="submit" class="btn btn-main btn-sm">
-                                    Add
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforelse
 
         </div>
     </div>
