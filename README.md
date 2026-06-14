@@ -29,64 +29,7 @@ Demo video link: https://drive.google.com/drive/folders/1hg3YhwERY-mOfTyxa5XECYk
 LECTURER NAME: NOR AZURA BINTI KAMARULZAMAN
 SUBMISSION DATE: 14 JUNE 2026
 
-
-
-Table of Content
-
-1.0 Introduction	3
-2.0 System Analysis and Design	6
-3.0 System Development	12
-3.1 Development Methodology	12
-3.2 Development Tools and Technologies	13
-3.3 Laravel MVC Architecture	15
-3.4 Project Structure	18
-3.5 Database Implementation	20
-3.6 Authentication Module	22
-3.7 User Management Module	23
-3.8 Food Menu Module	24
-3.9 Cart Management Module	25
-3.10 Order Management Module	26
-3.11 Payment Module	27
-3.12 Notification Module	28
-3.13 Messaging Module	31
-3.14 Rating and Feedback Module	31
-3.15 Admin Dashboard Module	32
-4.0 System Implementation	35
-4.1 Home Page	36
-4.2 Registration Page	36
-4.3 Login Page	36
-4.4 User Dashboard	37
-4.5 Food Menu Page	37
-4.6 Cart Page	37
-4.7 Checkout and Payment Page	38
-4.8 Order Tracking Page	38
-4.9 Messaging Interface	38
-4.10 Rating Interface	39
-4.11 Admin Dashboard	39
-4.12 Database Screenshots	40
-5.0 Testing and Results	40
-6.0 Challenges and Solutions	53
-7.0 Conclusion and Future Enhancement	55
-8.References	57
-Appendix A – GitHub Repository Link:	57
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1.0 Introduction
+# 1.0 Introduction
 1.1 Background of the Project
 Food ordering has traditionally been performed through manual methods where customers visit food outlets, place orders physically, wait for preparation, and make payments at the counter. Although this process is widely practiced, it often creates inconvenience for customers, especially during peak hours when queues become long and waiting times increase.
 With the increasing use of smartphones, internet services, and digital payment systems, customers now expect faster and more convenient methods of purchasing food. Online food ordering platforms have emerged as effective solutions to overcome the limitations of traditional ordering methods. These systems allow users to place orders remotely, monitor order progress, and complete transactions electronically.
@@ -120,7 +63,7 @@ For administrators, the system improves operational efficiency by automating foo
 For food runners, the system provides an organized approach to managing delivery tasks and communicating with customers. Delivery status updates and messaging features improve coordination and service quality.
 From an academic perspective, this project serves as a practical application of web development concepts learned throughout the course. It demonstrates the implementation of Laravel MVC architecture, authentication, database management, CRUD operations, routing, and responsive interface design. The project also enhances teamwork, problem-solving, and software development skills among group members.
 Overall, the IIUMExpress Food Ordering System contributes to the digital transformation of food ordering services by providing a modern, efficient, and user-friendly platform that improves operational effectiveness and customer satisfaction.
-2.0 System Analysis and Design
+# 2.0 System Analysis and Design
 2.1 System Overview
 IIUMExpress is a web-based Food Ordering System developed using the Laravel framework and MySQL database. The system is designed to streamline food ordering and delivery management by providing a centralized platform for customers, administrators, and food runners.
 Customers can browse food menus, search for food items, add products to a shopping cart, place orders, make payments, receive notifications, communicate with food runners, and provide ratings after receiving their orders. Administrators can manage users, food items, categories, orders, payments, and system activities through an administrative dashboard. Food runners are responsible for managing delivery tasks and updating delivery statuses.
