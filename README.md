@@ -721,7 +721,25 @@ In conclusion, these future enhancements have the potential to transform IIUMExp
 
 8.References
 Appendix: GitHub Repository Link: https://github.com/rubiya-bhuiyan/IIUMExpress
+Beal, V. (n.d.). Laravel. Webopedia. https://www.webopedia.com/definitions/laravel/
 
+Bootstrap. (n.d.). Bootstrap documentation. https://getbootstrap.com/docs/
+
+GitHub. (n.d.). GitHub Docs. https://docs.github.com/
+
+Laravel. (n.d.). Laravel documentation. https://laravel.com/docs
+
+MySQL. (n.d.). MySQL 8.0 reference manual. Oracle. https://dev.mysql.com/doc/refman/8.0/en/
+
+phpMyAdmin. (n.d.). phpMyAdmin documentation. https://docs.phpmyadmin.net/
+
+PHP. (n.d.). PHP manual. The PHP Group. https://www.php.net/manual/en/
+
+W3Schools. (n.d.). Bootstrap tutorial. https://www.w3schools.com/bootstrap/
+
+W3Schools. (n.d.). PHP tutorial. https://www.w3schools.com/php/
+
+W3Schools. (n.d.). MySQL tutorial. https://www.w3schools.com/mysql/
 
 
 
