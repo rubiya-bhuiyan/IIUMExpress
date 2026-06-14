@@ -356,11 +356,7 @@ Figure 3.14: Admin Dashboard Overview :
 
 
 
-
-
-
-
-4.0 System Implementation
+# 4.0 System Implementation
 This chapter presents the implementation of the IIUMExpress Food Ordering System after the development phase was completed. The purpose of this chapter is to demonstrate how the designed features and functionalities were successfully implemented into a working web-based application. The system was developed using Laravel Framework, MySQL database, Bootstrap, HTML, CSS, and JavaScript to provide an efficient and user-friendly food ordering platform.
 The implementation phase focused on integrating all modules developed in the previous chapter into a complete system. Both customer and administrator functionalities were implemented to ensure that users could perform food ordering activities smoothly while administrators could manage the system efficiently. Features such as user registration, login, food browsing, cart management, order processing, order tracking, customer assistance, ratings, and administrative management were successfully integrated into the platform.
 The system was tested throughout the implementation process to ensure that each module functioned according to the project requirements. Data entered by users is stored in the database and processed through Laravel controllers before being displayed on the user interface. This integration allows the system to provide a complete food ordering experience while maintaining data consistency and system reliability.
@@ -424,7 +420,7 @@ The database plays an important role in storing and managing system information.
 The screenshots presented in this section demonstrate the successful implementation of the database and provide evidence that user information, food records, orders, ratings, and messages are stored correctly within the application.
 
 
-5.0 Testing and Results
+# 5.0 Testing and Results
 Testing was conducted to ensure that the IIUMExpress Food Ordering System functioned correctly and met the project requirements. The testing process focused on verifying the performance of all major modules, including user authentication, food menu management, cart operations, order processing, order tracking, ratings and reviews, assistance requests, and administrative management.
 Several testing methods were applied throughout the project, including functional testing, database testing, and user acceptance testing. Functional testing was used to verify that each feature produced the expected output, while database testing ensured that information was stored and retrieved accurately from the MySQL database. User acceptance testing was also performed to confirm that the system was easy to use and suitable for real-world usage.
 The testing process helped identify and resolve issues related to order management, ratings, category management, and database relationships. After multiple rounds of testing and debugging, all major functionalities operated successfully without critical errors. The following sections present the testing strategy, testing results, and overall system evaluation.
@@ -611,7 +607,7 @@ View Recent Updated Food:
 Based on the testing results, the IIUMExpress Food Ordering System successfully achieved its intended objectives. All core functionalities were implemented and tested successfully, including user authentication, menu browsing, cart management, checkout processing, order tracking, ratings and reviews, assistance requests, and administrative management.
 Database testing confirmed that data was stored and retrieved accurately through the MySQL database, ensuring consistency and integrity across all modules. Overall, the system was found to be stable, functional, and suitable for use as a web-based food ordering platform.
 
-6.0 Challenges and Solutions
+# 6.0 Challenges and Solutions
 During the development of the IIUMExpress Food Ordering System, several challenges were encountered by the project team. These challenges involved technical implementation, database management, user interface design, and team collaboration. Despite these difficulties, appropriate solutions were applied to ensure the successful completion of the project. 
 6.1 Challenges Faced During Development
 6.1.1 Learning Laravel Framework
@@ -638,7 +634,7 @@ GitHub was used as a version control platform to facilitate collaboration among 
 
 6.3 Lessons Learned
 This project provided valuable experience in web application development using Laravel. Team members gained practical knowledge in MVC architecture, database management, authentication, CRUD operations, responsive interface design, and collaborative software development. The project also improved communication, teamwork, problem-solving, and project management skills that will be beneficial in future software development projects.
-7.0 Conclusion and Future Enhancement
+# 7.0 Conclusion and Future Enhancement
 7.1 Conclusion
 The IIUMExpress Food Ordering System was successfully developed as a web-based platform that simplifies food ordering and delivery management. The system provides various functionalities including user registration, authentication, food browsing, cart management, order placement, payment processing, notifications, messaging, ratings, and administrative management.
 By utilizing Laravel MVC architecture, the application achieves a structured, maintainable, and scalable design. The implementation of CRUD operations, database management, authentication, and responsive user interfaces demonstrates the practical application of concepts learned in the Web Application Development course.
@@ -662,7 +658,7 @@ Live Customer Support
 A live chat support system can be introduced to allow customers to communicate directly with administrators or customer service representatives whenever assistance is required.
 In conclusion, these future enhancements have the potential to transform IIUMExpress into a more advanced, intelligent, and comprehensive food ordering platform that better serves the needs of customers, administrators, and food runners.
 
-8.References
+# 8.References
 Appendix: GitHub Repository Link: https://github.com/rubiya-bhuiyan/IIUMExpress
 Beal, V. (n.d.). Laravel. Webopedia. https://www.webopedia.com/definitions/laravel/
 
